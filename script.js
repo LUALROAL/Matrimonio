@@ -154,7 +154,7 @@ document.getElementById('attendance-form').addEventListener('submit', function (
             Swal.fire({
                 icon: 'success',
                 title: '¡Confirmación enviada!',
-                text: 'Gracias por confirmar tu asistencia 🎉'
+                text: 'Gracias por confirmar 🎉'
             });
 
             form.reset();
