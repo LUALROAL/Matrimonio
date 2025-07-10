@@ -87,6 +87,13 @@ document.getElementById('attendance-form').addEventListener('submit', function (
     e.preventDefault();
     const form = e.target;
     const confirmacion = document.getElementById('confirmacion').value;
+    
+    // Mostrar spinner
+    // document.getElementById('loading-spinner').classList.remove('hidden');
+    
+    // Deshabilitar el botón de enviar para evitar múltiples envíos
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
 
     if (confirmacion === 'si') {
         const nombre = document.getElementById('nombre').value;
@@ -94,6 +101,8 @@ document.getElementById('attendance-form').addEventListener('submit', function (
         const email = document.getElementById('email').value;
         if (!nombre || !edad || !email) {
             Swal.fire('Faltan datos', 'Completa todos los campos obligatorios', 'warning');
+            document.getElementById('loading-spinner').classList.add('hidden');
+            submitButton.disabled = false;
             return;
         }
         const numAcompanantes = parseInt(document.getElementById('acompanantes').value);
@@ -102,6 +111,8 @@ document.getElementById('attendance-form').addEventListener('submit', function (
             const e = document.getElementById(`acompanante_edad_${i}`)?.value;
             if (!n || !e) {
                 Swal.fire('Faltan datos', `Completa los datos del acompañante ${i}`, 'warning');
+                document.getElementById('loading-spinner').classList.add('hidden');
+                submitButton.disabled = false;
                 return;
             }
         }
@@ -109,6 +120,8 @@ document.getElementById('attendance-form').addEventListener('submit', function (
         const nombreNo = document.getElementById('nombre-no').value;
         if (!nombreNo.trim()) {
             Swal.fire('Faltan datos', 'Ingresa tu nombre para registrar tu respuesta', 'warning');
+            document.getElementById('loading-spinner').classList.add('hidden');
+            submitButton.disabled = false;
             return;
         }
     }
@@ -120,6 +133,10 @@ document.getElementById('attendance-form').addEventListener('submit', function (
     })
     .then(response => response.json())
     .then(data => {
+        // Ocultar spinner cuando la respuesta es recibida
+        document.getElementById('loading-spinner').classList.add('hidden');
+        submitButton.disabled = false;
+        
         if (data.result === "success") {
             const nombreFinal = confirmacion === 'no'
                 ? document.getElementById('nombre-no').value
@@ -148,6 +165,9 @@ document.getElementById('attendance-form').addEventListener('submit', function (
     })
     .catch(error => {
         console.error(error);
+        // Ocultar spinner si hay error
+        document.getElementById('loading-spinner').classList.add('hidden');
+        submitButton.disabled = false;
         Swal.fire('Error de conexión', 'No se pudo conectar con el servidor', 'error');
     });
 });
