@@ -81,15 +81,14 @@ document.getElementById('acompanantes').addEventListener('change', function() {
         container.appendChild(acompananteGroup);
     }
 });
-
 // Envío del formulario unificado
 document.getElementById('attendance-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const form = e.target;
     const confirmacion = document.getElementById('confirmacion').value;
     
-    // Mostrar spinner
-    // document.getElementById('loading-spinner').classList.remove('hidden');
+    // Mostrar spinner solo cuando se envía el formulario
+    document.getElementById('loading-spinner').classList.remove('hidden');
     
     // Deshabilitar el botón de enviar para evitar múltiples envíos
     const submitButton = form.querySelector('button[type="submit"]');

@@ -526,35 +526,175 @@
 
 
 
-      .loading-spinner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-}
+      /* Estilos del loading spinner */
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f9f3f0; /* Color de fondo actual de tu página */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
 
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #d4a59a;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 15px;
-}
+        /* Estilos del contenedor de cubos */
+        .cube-container {
+            width: 15em;
+            height: 15em;
+            transform-style: preserve-3d;
+            animation: rotate 15s infinite linear;
+            perspective: 1000px;
+        }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        .cube {
+            position: absolute;
+            width: 15em;
+            height: 15em;
+            transform-style: preserve-3d;
+        }
 
-.hidden {
+        .cube--2 {
+            transform: rotateX(135deg) rotateY(135deg);
+        }
+
+        .cube--3 {
+            transform: rotateX(135deg) rotateZ(135deg);
+        }
+
+        .side {
+            position: absolute;
+            width: 15em;
+            height: 15em;
+            transform-style: preserve-3d;
+        }
+
+        .spot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 45%;
+            height: 45%;
+            box-shadow: 0 0 35px 25px #f9f3f0 inset; /* Color de fondo para el interior */
+            border-radius: 50%;
+            transform-style: preserve-3d;
+        }
+
+        .spot::before, .spot::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -3em;
+            margin-left: -6em;
+            width: 12em;
+            height: 6em;
+            box-sizing: border-box;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 16'%3E%3Cpath d='M13 11.3L15.2 9c.6.2 1.6.8 2.4 1.4-1 .6-2.3 1.5-3.5 2-1.3.6-2.7 2-3.5 3 .2-1 1-2.8 2.2-4zm-8.6.3c-1.5-2.2-3-5-3.7-7L6.5 12l-2-.4zM12.6 8c2-.6 3.2-4.4 4.8-3l.5.7-3 2.8c-1 .8-1.8 1.7-2.5 2.4-1 1-1.7 2.2-2 3.3 0-1.2.7-2.6 1.2-4l1-2.3zm-7 1c0-.6 0-1.3-.2-2.5 1 .6 3 1.7 3.4 2.4v1c0 1.8.3 3.6.6 4.7l-4-5c0-.2 0-.4.2-.7zm-.3-3c-.6-2-2-4.5-2.7-6C4 .6 6 1.8 7.6 3v2.4c-.2.7-.2 1.5-.2 2L5.4 6zm-.6 6c.8 0 1.7.3 2.2.5l2.5 3.2c-.4 0-.7 0-1-.2-1-.2-2.5-1.6-3.8-3.5zm13-2l-2-1.3L18 6.3c.4 1 .2 2.4-.2 3.7zM11 16c.8-1 2.2-2.5 3.5-3 1-.5 2-1 3-1.7-.5 1-1 2-1.4 2.5-1 1.4-3 2-5 2zm-.8-10.4c.6 1 1 1.7 1.2 2.4h.5l-.8 2.2c-.6 1.2-1 2.6-1.3 4-.4-1.3-.6-2.8-.6-4.3 0-1.7.4-3.3.8-4.4zM4.7 6C5 7.7 5 8.7 5 9L.2 3C0 1.8 0 .8.4.4.8 0 1.2 0 1.8 0c.7 1.2 2.3 4 3 6zm3 1.6c0-1.7 0-3.5.3-4.2.7.5 1.3 1 1.8 1.7-.4 1-.7 2-1 3.5l-1-1z'/%3E%3C/svg%3E");
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center bottom;
+            animation: wing 0.7s infinite;
+        }
+
+        .spot::before {
+            transform: rotateX(-50deg) translateY(-50%);
+            background: linear-gradient(to bottom, #d4a59a 10%, #c19185, #a97c70, #8a5e54);
+        }
+
+        .spot::after {
+            transform: rotateX(-130deg) translateY(-50%);
+            background: linear-gradient(to top, #d4a59a 10%, #c19185, #a97c70, #8a5e54);
+        }
+
+        /* Colores personalizados para cada cara usando tu paleta */
+        .spot--top::before, 
+        .spot--top::after {
+            background: linear-gradient(to bottom, #d4a59a 10%, #c19185, #a97c70, #8a5e54);
+            animation-delay: -0.1167s;
+        }
+
+        .spot--bottom::before, 
+        .spot--bottom::after {            
+            background: linear-gradient(to top, #d4a59a 10%, #c19185, #a97c70, #8a5e54);
+            animation-delay: -0.2333s;
+        }
+
+        .spot--left::before, 
+        .spot--left::after {
+            background: linear-gradient(to bottom, #d4a59a 10%, #c19185, #a97c70, #8a5e54);
+            animation-delay: -0.35s;
+        }
+
+        .spot--right::before, 
+        .spot--right::after {
+            background: linear-gradient(to top, #d4a59a, #c19185, #a97c70, #8a5e54 90%);
+            animation-delay: -0.4667s;
+        }
+
+        .spot--back::before, 
+        .spot--back::after {
+            background: linear-gradient(to top, #d4a59a, #c19185, #a97c70, #8a5e54, #8a5e54, #8a5e54 90%);
+            animation-delay: -0.5833s;
+        }
+
+        .spot--front::before, 
+        .spot--front::after {
+            background: linear-gradient(to bottom, #d4a59a 10%, #c19185, #a97c70, #8a5e54);
+            animation-delay: -0.7s;
+        }
+
+        /* Posicionamiento de las caras del cubo */
+        .side--back {
+            transform: translateZ(-7.5em) rotateY(180deg);
+        }
+
+        .side--left {
+            transform: translateX(-7.5em) rotateY(-90deg);
+        }
+
+        .side--right {
+            transform: translateX(7.5em) rotateY(90deg);
+        }
+
+        .side--top {
+            transform: translateY(-7.5em) rotateX(90deg);
+        }
+
+        .side--bottom {
+            transform: translateY(7.5em) rotateX(-90deg);
+        }
+
+        .side--front {
+            transform: translateZ(7.5em);
+        }
+
+        /* Animaciones */
+        @keyframes rotate {
+            100% {
+                transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg);
+            }
+        }
+
+        @keyframes wing {
+            50% {
+                transform: rotateX(-90deg) translateY(-50%);
+            }
+        }
+
+        .loading-text {
+            margin-top: 150px;
+            color: #555;
+            font-size: 1.2rem;
+        }
+
+        .hidden {
     display: none !important;
 }
