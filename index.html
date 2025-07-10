@@ -395,6 +395,26 @@
             background-color: #c19185;
         }
 
+        .acompanante-group {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f9f3f0;
+            border-radius: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .thank-you-message {
+            background-color: #f9f3f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
         /* Regalos */
         #gifts {
             background-color: white;
@@ -472,11 +492,6 @@
                 font-size: 2rem;
             }
         }
-
-        /* .full-image {
-            object-fit: contain !important;
-            height: 100% !important;
-        } */
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -535,10 +550,8 @@
             <h2>Nuestra Historia</h2>
             <div class="story-content">
                 <div class="story-text">
-                    <!-- <img class="story-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5sIBxvo5OKrktZWJwY_7-kMPq3jy5cLUOs8fEuxf6dO2JQ40TV36ECn2u02Ha-THdoGU&usqp=CAU" alt="Jhoanna y Mauricio"> -->
                     <p><em>“Como llama divina es el fuego ardiente del amor. Ni las muchas aguas pueden apagarlo, ni los
                             ríos extinguirlo.”</em><br><strong>Cantares 8:7b</strong></p>
-
                 </div>
                 <div class="story-image">
                     <img src="galeria/80342744_1419191521591069_3140884458006118400_n.jpg" alt="Jhoanna y Mauricio">
@@ -582,7 +595,6 @@
         </div>
     </section>
 
-
     <!-- Galería -->
     <section id="gallery">
         <div class="container">
@@ -593,7 +605,7 @@
                         alt="Foto 1">
                 </div>
                 <div class="gallery-item">
-                    <img src="galeria/Imagen de WhatsApp 2025-07-09 a las 12.04.03_8d12c773.jpg" alt="Foto 2">
+                    <img src="/galeria/Imagen de WhatsApp 2025-07-09 a las 12.04.03_8d12c773.jpg" alt="Foto 2">
                 </div>
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
@@ -611,38 +623,72 @@
         <div class="container">
             <h2>Confirma tu Asistencia</h2>
             <div class="rsvp-form">
+                <div id="thank-you-message" class="thank-you-message hidden">
+                    <h3>¡Gracias <span id="nombre-invitado"></span> por tu respuesta!</h3>
+                    <p>Lamentamos que no puedas asistir, pero agradecemos que nos hayas informado.</p>
+                    <p>Esperamos verte en otra ocasión.</p>
+                </div>
+                
                 <form id="attendance-form" name="formulario_asitencia" method="post"
                     action="https://script.google.com/macros/s/AKfycbxwuf7eUxHX9k5nySkgzPARVr53FXWC42Bs3kPVKpi-lXGLg8CzyXw2-k9Hp1PamH5Gtw/exec">
+                    <input type="hidden" id="asistencia" name="Asistencia" value="">
+                    
                     <div class="form-group">
-                        <label for="name">Nombre completo</label>
-                        <input type="text" id="name" name="Nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Número de invitados</label>
-                        <select id="guests" name="guests" required>
-                            <option value="1">1 persona</option>
-                            <option value="2" selected>2 personas</option>
-                            <option value="3">3 personas</option>
-                            <option value="4">4 personas</option>
-                            <option value="5">5 personas</option>
+                        <label for="confirmacion">¿Asistirás a nuestra boda?</label>
+                        <select id="confirmacion" name="Confirmacion" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="si">Sí, con gusto asistiré</option>
+                            <option value="no">No, lamentablemente no podré asistir</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="attendance">¿Asistirás?</label>
-                        <select id="attendance" name="attendance" required>
-                            <option value="yes">Con gusto asistiré</option>
-                            <option value="no">Lamentablemente no podré asistir</option>
-                        </select>
+                    
+                    <div id="form-no-asistencia" class="hidden">
+                        <div class="form-group">
+                            <label for="nombre-no">Nombre completo (para registrar tu respuesta)</label>
+                            <input type="text" id="nombre-no" name="Nombre" required>
+                        </div>
+                        <button type="button" id="btn-no-asistencia" class="btn-no-asistencia">Enviar respuesta</button>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje para los novios</label>
-                        <textarea id="message" name="message"></textarea>
+                    
+                    <div id="formulario-asistencia" class="hidden">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="Nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edad">Edad</label>
+                            <input type="number" id="edad" name="Edad" min="1" max="120" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="acompanantes">Número de acompañantes</label>
+                            <select id="acompanantes" name="Numero_Acompanantes" required>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        
+                        <div id="acompanantes-container">
+                            <!-- Aquí se agregarán dinámicamente los campos para los acompañantes -->
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje para los novios (opcional)</label>
+                            <textarea id="mensaje" name="Mensaje"></textarea>
+                        </div>
+                        
+                        <button type="submit">Enviar confirmación</button>
                     </div>
-                    <button type="submit">Enviar confirmación</button>
                 </form>
             </div>
         </div>
@@ -662,7 +708,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer>
@@ -700,29 +745,86 @@
         const countdownTimer = setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Form handling
-        document.getElementById('attendance-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const attendance = document.getElementById('attendance').value;
-
-            if (attendance === 'yes') {
-                alert(`¡Gracias ${name} por confirmar tu asistencia! Nos alegra mucho que nos acompañes en nuestro día especial.`);
+        // Lógica del formulario de asistencia
+        document.getElementById('confirmacion').addEventListener('change', function() {
+            const confirmacion = this.value;
+            const formularioAsistencia = document.getElementById('formulario-asistencia');
+            const formNoAsistencia = document.getElementById('form-no-asistencia');
+            const thankYouMessage = document.getElementById('thank-you-message');
+            const asistenciaInput = document.getElementById('asistencia');
+            
+            if (confirmacion === 'si') {
+                formularioAsistencia.classList.remove('hidden');
+                formNoAsistencia.classList.add('hidden');
+                thankYouMessage.classList.add('hidden');
+                asistenciaInput.value = 'Sí';
+            } else if (confirmacion === 'no') {
+                formularioAsistencia.classList.add('hidden');
+                formNoAsistencia.classList.remove('hidden');
+                thankYouMessage.classList.add('hidden');
+                asistenciaInput.value = 'No';
             } else {
-                alert(`Gracias ${name} por avisarnos. Lamentamos no poder contar contigo, pero agradecemos tu mensaje.`);
+                formularioAsistencia.classList.add('hidden');
+                formNoAsistencia.classList.add('hidden');
+                thankYouMessage.classList.add('hidden');
+                asistenciaInput.value = '';
             }
+        });
 
-            this.reset();
+        // Manejar el envío cuando la respuesta es "No"
+        document.getElementById('btn-no-asistencia').addEventListener('click', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre-no').value;
+            if (nombre.trim() === '') {
+                alert('Por favor ingresa tu nombre para registrar tu respuesta');
+                return;
+            }
+            
+            // Mostrar mensaje de agradecimiento
+            document.getElementById('nombre-invitado').textContent = nombre;
+            document.getElementById('thank-you-message').classList.remove('hidden');
+            document.getElementById('form-no-asistencia').classList.add('hidden');
+            
+            // Enviar el formulario después de 2 segundos
+            setTimeout(() => {
+                document.getElementById('attendance-form').submit();
+            }, 2000);
+        });
+
+        // Manejar el número de acompañantes
+        document.getElementById('acompanantes').addEventListener('change', function() {
+            const numAcompanantes = parseInt(this.value);
+            const container = document.getElementById('acompanantes-container');
+            
+            // Limpiar el contenedor
+            container.innerHTML = '';
+            
+            // Agregar campos para cada acompañante
+            for (let i = 1; i <= numAcompanantes; i++) {
+                const acompananteGroup = document.createElement('div');
+                acompananteGroup.className = 'acompanante-group';
+                acompananteGroup.innerHTML = `
+                    <h4>Acompañante ${i}</h4>
+                    <div class="form-group">
+                        <label for="acompanante_nombre_${i}">Nombre completo</label>
+                        <input type="text" id="acompanante_nombre_${i}" name="Acompanante_Nombre_${i}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="acompanante_edad_${i}">Edad</label>
+                        <input type="number" id="acompanante_edad_${i}" name="Acompanante_Edad_${i}" min="1" max="120" required>
+                    </div>
+                `;
+                container.appendChild(acompananteGroup);
+            }
         });
 
         // Menú responsivo
-        document.querySelector('.menu-toggle').addEventListener('click', function () {
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
         });
 
         // Cambiar estilo del menú al hacer scroll
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -733,21 +835,32 @@
 
         // Cerrar menú al hacer click en un enlace (mobile)
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function () {
+            link.addEventListener('click', function() {
                 document.querySelector('.nav-links').classList.remove('active');
             });
         });
 
         // Suavizar scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
+
+        // Manejar el envío del formulario cuando la respuesta es "Sí"
+        document.getElementById('attendance-form').addEventListener('submit', function(e) {
+            const confirmacion = document.getElementById('confirmacion').value;
+            
+            if (confirmacion === 'si') {
+                e.preventDefault();
+                const nombre = document.getElementById('nombre').value;
+                alert(`¡Gracias ${nombre} por confirmar tu asistencia! Nos alegra mucho que nos acompañes en nuestro día especial.`);
+                this.submit();
+            }
+        });
     </script>
 </body>
-
 </html>
