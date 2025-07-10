@@ -5,496 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda de Jhoanna & Mauricio</title>
-    <style>
-        /* Estilos generales */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Playfair Display', serif;
-        }
-
-        body {
-            background-color: #f9f3f0;
-            color: #555;
-            line-height: 1.6;
-            padding-top: 80px;
-            /* Espacio para el menú fijo */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 80px 0;
-            scroll-margin-top: 80px;
-            /* Ajuste para el menú fijo */
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: #d4a59a;
-            font-weight: normal;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        h2:after {
-            content: "";
-            display: block;
-            width: 100px;
-            height: 2px;
-            background: #d4a59a;
-            margin: 15px auto;
-        }
-
-        p {
-            margin-bottom: 15px;
-        }
-
-        /* Menú de navegación */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.98);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            color: #d4a59a;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: #555;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #d4a59a;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: #d4a59a;
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #d4a59a;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-            margin-top: -80px;
-            height: calc(100vh + 80px);
-        }
-
-        .header-content h1 {
-            font-size: 4rem;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .header-content p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .date {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-        }
-
-        /* Countdown */
-        #countdown {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px 40px;
-            border-radius: 15px;
-            display: inline-block;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 2px solid #fff;
-        }
-
-        #countdown div {
-            display: inline-block;
-            margin: 0 15px;
-            text-align: center;
-            min-width: 80px;
-            color: #555;
-        }
-
-        #countdown span {
-            display: block;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #d4a59a;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-            margin-bottom: 5px;
-        }
-
-        #countdown div:after {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 1px;
-            background: #d4a59a;
-            margin-top: 5px;
-        }
-
-        /* Efecto de brillo en hover */
-        #countdown:hover {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(212, 165, 154, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(212, 165, 154, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(212, 165, 154, 0);
-            }
-        }
-
-        /* Nuestra historia */
-        #story {
-            background-color: white;
-        }
-
-        .story-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .story-text {
-            flex: 1;
-            min-width: 300px;
-            padding: 0 20px;
-
-        }
-
-        .story-text img {
-            max-width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            align-items: center;
-
-        }
-
-        .story-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .story-image img {
-            max-width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Detalles del evento */
-        #details {
-            background-color: #f9f3f0;
-        }
-
-        .detail-cards {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .detail-card {
-            background: white;
-            padding: 30px;
-            border-radius: 5px;
-            width: 30%;
-            min-width: 300px;
-            margin: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .detail-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .detail-card i {
-            font-size: 3rem;
-            color: #d4a59a;
-            margin-bottom: 20px;
-        }
-
-        .detail-card h3 {
-            margin-bottom: 15px;
-        }
-
-        /* Galería */
-        #gallery {
-            background-color: white;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            height: 250px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            object-position: top;
-        }
-
-        .gallery-item img:hover {
-            transform: scale(1.05);
-        }
-
-        /* RSVP */
-        #rsvp {
-            background-color: #f9f3f0;
-            text-align: center;
-        }
-
-        .rsvp-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            height: 100px;
-        }
-
-        button {
-            background-color: #d4a59a;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #c19185;
-        }
-
-        .acompanante-group {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #f9f3f0;
-            border-radius: 5px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .thank-you-message {
-            background-color: #f9f3f0;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
-
-        /* Regalos */
-        #gifts {
-            background-color: white;
-            text-align: center;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .header-content p {
-                font-size: 1.2rem;
-            }
-
-            .date {
-                font-size: 1.5rem;
-            }
-
-            .detail-card {
-                width: 100%;
-            }
-
-            /* Menú responsive */
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: rgba(255, 255, 255, 0.98);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: left 0.3s ease;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 20px 0;
-            }
-
-            .navbar.scrolled .nav-links {
-                top: 60px;
-                height: calc(100vh - 60px);
-            }
-
-            /* Countdown responsive */
-            #countdown {
-                padding: 20px;
-            }
-
-            #countdown div {
-                margin: 0 5px;
-                min-width: 60px;
-            }
-
-            #countdown span {
-                font-size: 2rem;
-            }
-        }
-    </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -625,14 +139,14 @@
             <div class="rsvp-form">
                 <div id="thank-you-message" class="thank-you-message hidden">
                     <h3>¡Gracias <span id="nombre-invitado"></span> por tu respuesta!</h3>
-                    <p>Lamentamos que no puedas asistir, pero agradecemos que nos hayas informado.</p>
-                    <p>Esperamos verte en otra ocasión.</p>
+                    <p id="confirmacion-mensaje"></p>
                 </div>
-                
-                <form id="attendance-form" name="formulario_asitencia" method="post"
+
+                <form id="attendance-form" name="formulario_asistencia" method="post"
                     action="https://script.google.com/macros/s/AKfycbxwuf7eUxHX9k5nySkgzPARVr53FXWC42Bs3kPVKpi-lXGLg8CzyXw2-k9Hp1PamH5Gtw/exec">
                     <input type="hidden" id="asistencia" name="Asistencia" value="">
-                    
+                    <input type="hidden" id="fecha" name="Fecha" value="">
+
                     <div class="form-group">
                         <label for="confirmacion">¿Asistirás a nuestra boda?</label>
                         <select id="confirmacion" name="Confirmacion" required>
@@ -641,31 +155,31 @@
                             <option value="no">No, lamentablemente no podré asistir</option>
                         </select>
                     </div>
-                    
+
                     <div id="form-no-asistencia" class="hidden">
                         <div class="form-group">
                             <label for="nombre-no">Nombre completo (para registrar tu respuesta)</label>
                             <input type="text" id="nombre-no" name="Nombre" required>
                         </div>
-                        <button type="button" id="btn-no-asistencia" class="btn-no-asistencia">Enviar respuesta</button>
+                        <button type="submit" class="btn-no-asistencia">Enviar respuesta</button>
                     </div>
-                    
+
                     <div id="formulario-asistencia" class="hidden">
                         <div class="form-group">
                             <label for="nombre">Nombre completo</label>
                             <input type="text" id="nombre" name="Nombre" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="edad">Edad</label>
                             <input type="number" id="edad" name="Edad" min="1" max="120" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="email">Correo electrónico</label>
                             <input type="email" id="email" name="Email" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="acompanantes">Número de acompañantes</label>
                             <select id="acompanantes" name="Numero_Acompanantes" required>
@@ -677,16 +191,16 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        
+
                         <div id="acompanantes-container">
                             <!-- Aquí se agregarán dinámicamente los campos para los acompañantes -->
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="mensaje">Mensaje para los novios (opcional)</label>
                             <textarea id="mensaje" name="Mensaje"></textarea>
                         </div>
-                        
+
                         <button type="submit">Enviar confirmación</button>
                     </div>
                 </form>
@@ -719,148 +233,7 @@
         </div>
     </footer>
 
-    <script>
-        // Countdown
-        function updateCountdown() {
-            const weddingDate = new Date('August 16, 2025 16:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerHTML = days;
-            document.getElementById('hours').innerHTML = hours;
-            document.getElementById('minutes').innerHTML = minutes;
-            document.getElementById('seconds').innerHTML = seconds;
-
-            if (distance < 0) {
-                clearInterval(countdownTimer);
-                document.getElementById('countdown').innerHTML = "¡Hoy es el gran día!";
-            }
-        }
-
-        const countdownTimer = setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Lógica del formulario de asistencia
-        document.getElementById('confirmacion').addEventListener('change', function() {
-            const confirmacion = this.value;
-            const formularioAsistencia = document.getElementById('formulario-asistencia');
-            const formNoAsistencia = document.getElementById('form-no-asistencia');
-            const thankYouMessage = document.getElementById('thank-you-message');
-            const asistenciaInput = document.getElementById('asistencia');
-            
-            if (confirmacion === 'si') {
-                formularioAsistencia.classList.remove('hidden');
-                formNoAsistencia.classList.add('hidden');
-                thankYouMessage.classList.add('hidden');
-                asistenciaInput.value = 'Sí';
-            } else if (confirmacion === 'no') {
-                formularioAsistencia.classList.add('hidden');
-                formNoAsistencia.classList.remove('hidden');
-                thankYouMessage.classList.add('hidden');
-                asistenciaInput.value = 'No';
-            } else {
-                formularioAsistencia.classList.add('hidden');
-                formNoAsistencia.classList.add('hidden');
-                thankYouMessage.classList.add('hidden');
-                asistenciaInput.value = '';
-            }
-        });
-
-        // Manejar el envío cuando la respuesta es "No"
-        document.getElementById('btn-no-asistencia').addEventListener('click', function(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre-no').value;
-            if (nombre.trim() === '') {
-                alert('Por favor ingresa tu nombre para registrar tu respuesta');
-                return;
-            }
-            
-            // Mostrar mensaje de agradecimiento
-            document.getElementById('nombre-invitado').textContent = nombre;
-            document.getElementById('thank-you-message').classList.remove('hidden');
-            document.getElementById('form-no-asistencia').classList.add('hidden');
-            
-            // Enviar el formulario después de 2 segundos
-            setTimeout(() => {
-                document.getElementById('attendance-form').submit();
-            }, 2000);
-        });
-
-        // Manejar el número de acompañantes
-        document.getElementById('acompanantes').addEventListener('change', function() {
-            const numAcompanantes = parseInt(this.value);
-            const container = document.getElementById('acompanantes-container');
-            
-            // Limpiar el contenedor
-            container.innerHTML = '';
-            
-            // Agregar campos para cada acompañante
-            for (let i = 1; i <= numAcompanantes; i++) {
-                const acompananteGroup = document.createElement('div');
-                acompananteGroup.className = 'acompanante-group';
-                acompananteGroup.innerHTML = `
-                    <h4>Acompañante ${i}</h4>
-                    <div class="form-group">
-                        <label for="acompanante_nombre_${i}">Nombre completo</label>
-                        <input type="text" id="acompanante_nombre_${i}" name="Acompanante_Nombre_${i}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="acompanante_edad_${i}">Edad</label>
-                        <input type="number" id="acompanante_edad_${i}" name="Acompanante_Edad_${i}" min="1" max="120" required>
-                    </div>
-                `;
-                container.appendChild(acompananteGroup);
-            }
-        });
-
-        // Menú responsivo
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Cambiar estilo del menú al hacer scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Cerrar menú al hacer click en un enlace (mobile)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-
-        // Suavizar scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Manejar el envío del formulario cuando la respuesta es "Sí"
-        document.getElementById('attendance-form').addEventListener('submit', function(e) {
-            const confirmacion = document.getElementById('confirmacion').value;
-            
-            if (confirmacion === 'si') {
-                e.preventDefault();
-                const nombre = document.getElementById('nombre').value;
-                alert(`¡Gracias ${nombre} por confirmar tu asistencia! Nos alegra mucho que nos acompañes en nuestro día especial.`);
-                this.submit();
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
