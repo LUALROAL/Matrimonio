@@ -593,7 +593,7 @@
                         alt="Foto 1">
                 </div>
                 <div class="gallery-item">
-                    <img src="/galeria/Imagen de WhatsApp 2025-07-09 a las 12.04.03_8d12c773.jpg" alt="Foto 2">
+                    <img src="galeria/Imagen de WhatsApp 2025-07-09 a las 12.04.03_8d12c773.jpg" alt="Foto 2">
                 </div>
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
@@ -611,10 +611,11 @@
         <div class="container">
             <h2>Confirma tu Asistencia</h2>
             <div class="rsvp-form">
-                <form id="attendance-form">
+                <form id="attendance-form" name="formulario_asitencia" method="post"
+                    action="https://script.google.com/macros/s/AKfycbxwuf7eUxHX9k5nySkgzPARVr53FXWC42Bs3kPVKpi-lXGLg8CzyXw2-k9Hp1PamH5Gtw/exec">
                     <div class="form-group">
                         <label for="name">Nombre completo</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="Nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Correo electrónico</label>
@@ -648,18 +649,19 @@
     </section>
 
     <!-- Regalos -->
-   <section id="gifts">
-    <div class="container">
-        <h2>Lista de Regalos</h2>
-        <p>Sabemos que tu presencia es el mejor regalo que podemos recibir, y con solo acompañarnos ya nos haces muy felices.</p>
-        <p>Sin embargo, si deseas tener un detalle con nosotros, tendremos <strong>lluvia de sobres</strong> el día del evento.</p>
-        <p>Cualquier obsequio, por pequeño que sea, será recibido con mucho amor y gratitud.</p>
-        <div style="margin-top: 30px;">
-            <a style="margin: 0 10px; color: #d4a59a; text-decoration: none;"><i
-                    class="fas fa-gift fa-2x"></i></a>
+    <section id="gifts">
+        <div class="container">
+            <h2>Lista de Regalos</h2>
+            <p>Sabemos que tu presencia es el mejor regalo que podemos recibir, y con solo acompañarnos ya nos haces muy
+                felices.</p>
+            <p>Sin embargo, si deseas tener un detalle con nosotros, tendremos <strong>lluvia de sobres</strong> el día
+                del evento.</p>
+            <p>Cualquier obsequio, por pequeño que sea, será recibido con mucho amor y gratitud.</p>
+            <div style="margin-top: 30px;">
+                <a style="margin: 0 10px; color: #d4a59a; text-decoration: none;"><i class="fas fa-gift fa-2x"></i></a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- Footer -->
